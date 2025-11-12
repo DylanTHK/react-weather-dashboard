@@ -1,11 +1,10 @@
 import { z } from "zod";
 
-export const WeatherSchema = z.object({
+export const weatherSchema = z.object({
   lat: z.number(),
   lon: z.number(),
   timezone: z.string(),
   timezone_offset: z.number(),
-
   current: z.object({
     dt: z.number(),
     sunrise: z.number(),
@@ -30,7 +29,6 @@ export const WeatherSchema = z.object({
       })
     ),
   }),
-
   hourly: z.array(
     z.object({
       dt: z.number(),
@@ -56,7 +54,6 @@ export const WeatherSchema = z.object({
       pop: z.number(), // probability of precipitation
     })
   ),
-
   daily: z.array(
     z.object({
       dt: z.number(),

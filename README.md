@@ -12,3 +12,9 @@ https://tanstack.com/query/latest
 
 ## Weather Data - OpenWeather
 https://openweathermap.org/
+* Note: first 1000 api calls free per day
+
+
+tsrfc - React boiler plate
+
+Continue: 43:43 (daily forecast)

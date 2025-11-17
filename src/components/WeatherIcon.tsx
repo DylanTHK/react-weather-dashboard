@@ -1,14 +1,14 @@
-import React from 'react'
+import clsx from "clsx"
 
 type Props = {
     src: string
-    childrenClassName?: string
+    className?: string
 }
 
-export default function WeatherIcon({src, childrenClassName}: Props) {
+export default function WeatherIcon({src, className}: Props) {
   return (
     <img
-        className={childrenClassName} 
+        className={clsx("size-8", className)} // default size 8 or custom other tags
         src={`https://openweathermap.org/img/wn/${src}@2x.png`}
 		alt="Weather Icon"
     />

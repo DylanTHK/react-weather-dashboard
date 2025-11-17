@@ -1,4 +1,3 @@
-import React from 'react'
 import Card from './Card'
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getWeather } from '../../api';
@@ -28,7 +27,7 @@ export default function HourlyForecast({}: Props) {
                         hour12: true
                         }
                 )}</p>
-                <WeatherIcon src={hour.weather[0].icon} childrenClassName="size-8" />
+                <WeatherIcon src={hour.weather[0].icon} />
                 <p>{Math.round(hour.temp)}°C</p>
             </div>
         ))}

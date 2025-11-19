@@ -1,5 +1,7 @@
 # Weather Dashboard
 
+tsrfc - React boiler plate
+
 ## Tech Stack
 React + TypeScript + Vite + tailwind + TanStack
 
@@ -14,7 +16,10 @@ https://tanstack.com/query/latest
 https://openweathermap.org/
 * Note: first 1000 api calls free per day
 
+## SVG Repository
+https://svgrepo.com/
+https://www.npmjs.com/package/vite-plugin-svgr
 
-tsrfc - React boiler plate
+## Schema
+https://zod.dev/basics
 
-Continue: 43:43 (daily forecast)

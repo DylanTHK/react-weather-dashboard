@@ -21,7 +21,7 @@ export default function CurrentWeather({}: Props) {
         <h2 className="text-6xl font-semibold text-center">
           {data.current.temp}°C
         </h2>
-        <WeatherIcon src={data.current.weather[0].icon} className="size-20"/>
+        <WeatherIcon src={data.current.weather[0].icon} childrenClassName="size-20"/>
         <h3 className="capitalize text-xl">
           {data.current.weather[0].description}
         </h3>

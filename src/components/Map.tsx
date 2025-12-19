@@ -10,21 +10,18 @@ type Props = {
 export default function Map({coords, onMapClick}: Props) {
   const {lat, lon} = coords
   return (
-    <>
-        <h2 className="text-2xl font-semibold">Maps</h2>
-        <MapContainer 
-            center={[lat, lon]}
-            zoom={5}
-            style={{ height: "500px", width: "700px" }}
-        >
-          <MapClick onMapClick={onMapClick}/>
-          <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={[lat, lon]} />
-        </MapContainer>
-    </>
+    <MapContainer 
+        center={[lat, lon]}
+        zoom={5}
+        style={{ height: "500px", width: "700px" }}
+    >
+      <MapClick onMapClick={onMapClick}/>
+      <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker position={[lat, lon]} />
+    </MapContainer>
   )
 }
 

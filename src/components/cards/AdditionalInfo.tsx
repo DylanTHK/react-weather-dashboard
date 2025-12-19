@@ -8,13 +8,16 @@ import Wind from "/src/assets/wind.svg?react"
 import Cloud from "/src/assets/cloud.svg?react"
 import Pressure from "/src/assets/pressure.svg?react"
 import UpArrow from "/src/assets/arrowup.svg?react"
+import type { Coords } from "../../types";
 
-type Props = {}
+type Props = {
+	coords: Coords
+}
 
-export default function AdditionalInfo({}: Props) {
+export default function AdditionalInfo({coords}: Props) {
   const { data } = useSuspenseQuery({
 		queryKey: ['weather'],
-		queryFn: () => getWeather({ lat: 10, lon: 20 })
+		queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon })
 	});
 
 	return (
@@ -57,33 +60,33 @@ function FormatComponent({value, number}: {value: string, number: number}) {
 
 const rows = [
     {
-			label: "Cloudiness (%)",
-			value: "clouds",
-			Icon: Cloud
+		label: "Cloudiness (%)",
+		value: "clouds",
+		Icon: Cloud
     },
-		{
-			label: "UV Index",
-			value: "uvi",
-			Icon: Uv
-		},
-		{
-			label: "Wind Direction",
-			value: "wind_deg",
-			Icon: Wind
-		},
-		{
-			label: "Pressure (hPa)",
-			value: "pressure",
-			Icon: Pressure
-		},
-		{
-			label: "Sunrise",
-			value: "sunrise",
-			Icon: Sunrise
-		},
-		{
-			label: "Sunset",
-			value: "sunset",
-			Icon: Sunset
-		}
+	{
+		label: "UV Index",
+		value: "uvi",
+		Icon: Uv
+	},
+	{
+		label: "Wind Direction",
+		value: "wind_deg",
+		Icon: Wind
+	},
+	{
+		label: "Pressure (hPa)",
+		value: "pressure",
+		Icon: Pressure
+	},
+	{
+		label: "Sunrise",
+		value: "sunrise",
+		Icon: Sunrise
+	},
+	{
+		label: "Sunset",
+		value: "sunset",
+		Icon: Sunset
+	}
 ] as const

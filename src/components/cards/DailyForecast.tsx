@@ -2,14 +2,17 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import Card from './Card'
 import { getWeather } from '../../api';
 import WeatherIcon from '../WeatherIcon';
+import type { Coords } from '../../types';
 
-type Props = {}
+type Props = {
+	coords: Coords
+}
 
-export default function DailyForecast({}: Props) {
+export default function DailyForecast({coords}: Props) {
 	// calling api for open weather data
 	const { data } = useSuspenseQuery({
 		queryKey: ['weather'],
-		queryFn: () => getWeather({ lat: 10, lon: 20 })
+		queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon })
 	});
 
 	return (

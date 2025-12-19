@@ -6,25 +6,20 @@ import HourlyForecast from "./components/cards/HourlyForecast";
 import CurrentWeather from "./components/cards/CurrentWeather";
 import AdditionalInfo from "./components/cards/AdditionalInfo";
 import Map from "./components/Map";
+import { useState } from "react";
+import type { Coords } from "./types";
 
 
 function App() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['weather'],
-    queryFn: () => getWeather({ lat: 10, lon: 20 })
-  });
-
-  if (isLoading) return <Card title="">Loading...</Card>;
-  if (error) return <Card title="">Error loading weather</Card>;
-  if (!data) return <Card title="">No data available</Card>;
+  const [coords, setCoords] = useState<Coords>({lat: 58, lon: -180})
 
   return (
     <div className="flex flex-col gap-8">
       <Map />
-      <CurrentWeather />
-      <HourlyForecast />
-      <DailyForecast />
-      <AdditionalInfo />
+      <CurrentWeather coords={coords}/>
+      <HourlyForecast coords={coords}/>
+      <DailyForecast coords={coords}/>
+      <AdditionalInfo coords={coords}/>
     </div>
   );
 }

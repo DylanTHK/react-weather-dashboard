@@ -12,7 +12,7 @@ type Props = {
 export default function HourlyForecast({coords}: Props) {
     // calling api for open weather data
     const { data } = useSuspenseQuery({
-		queryKey: ['weather'],
+		queryKey: ['weather', coords],
 		queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon })
 	});
 

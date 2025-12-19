@@ -1,6 +1,3 @@
-import { useQuery } from "@tanstack/react-query"
-import { getWeather } from "./api"
-import Card from "./components/cards/Card";
 import DailyForecast from "./components/cards/DailyForecast";
 import HourlyForecast from "./components/cards/HourlyForecast";
 import CurrentWeather from "./components/cards/CurrentWeather";
@@ -11,11 +8,15 @@ import type { Coords } from "./types";
 
 
 function App() {
-  const [coords, setCoords] = useState<Coords>({lat: 58, lon: -180})
+  const [coords, setCoords] = useState<Coords>({lat: 1.3, lon: 103})
+
+  const onMapClick = (lat: number, lon:number) => {
+    setCoords({lat, lon})
+  }
 
   return (
     <div className="flex flex-col gap-8">
-      <Map />
+      <Map coords={coords} onMapClick={onMapClick}/>
       <CurrentWeather coords={coords}/>
       <HourlyForecast coords={coords}/>
       <DailyForecast coords={coords}/>

@@ -1,20 +1,43 @@
-import { MapContainer, Marker, TileLayer } from "react-leaflet"
+import { MapContainer, Marker, TileLayer, useMap, useMapEvents } from "react-leaflet"
 import "leaflet/dist/leaflet.css";
+import type { Coords } from "../types";
 
-type Props = {}
+type Props = {
+  coords: Coords // inserting variables varName: varType
+  onMapClick: (lat: number, lon: number) => void // inserting function funcName: (funcInputs) => funcReturnVals
+}
 
-export default function Map({}: Props) {
+export default function Map({coords, onMapClick}: Props) {
+  const {lat, lon} = coords
   return (
-    <MapContainer 
-        center={[10, 20]}
-        zoom={5}
-        style={{ height: "500px", width: "500px" }}
-    >
-        <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[10, 20]} />
-    </MapContainer>
+    <>
+        <h2 className="text-2xl font-semibold">Maps</h2>
+        <MapContainer 
+            center={[lat, lon]}
+            zoom={5}
+            style={{ height: "500px", width: "700px" }}
+        >
+          <MapClick onMapClick={onMapClick}/>
+          <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[lat, lon]} />
+        </MapContainer>
+    </>
   )
+}
+
+function MapClick({onMapClick}: {onMapClick: (lat: number, lon: number) => void}) {
+  const map = useMap();
+
+  useMapEvents({
+    click: (e) => {
+      // console.log(e);
+      const {lat, lng} = e.latlng
+      map.panTo([lat, lng])
+      onMapClick(lat, lng)
+    },
+  });
+  return null;
 }
